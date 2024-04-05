@@ -1,0 +1,46 @@
+{
+  "name": "@darrellvs/node-wave-link-sdk",
+  "version": "1.0.6",
+  "description": "An unofficial SDK for Elgato's Wave Link",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "jest",
+    "pub": "npm version patch --force && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarrellVS/node-wave-link-sdk.git"
+  },
+  "keywords": [
+    "wave-link",
+    "wave",
+    "link",
+    "elgato"
+  ],
+  "author": "Darrell van Swinderen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarrellVS/node-wave-link-sdk/issues"
+  },
+  "homepage": "https://github.com/DarrellVS/node-wave-link-sdk#readme",
+  "dependencies": {
+    "events": "^3.3.0",
+    "simple-jsonrpc-js": "^1.2.0",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/ws": "^8.5.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.4"
+  }
+}
