@@ -7,7 +7,7 @@ An unofficial SDK for Elgato's Wave Link
 This package provides you with utilities to manipulate and read the Wave Link application from your own code base.\
 Having reverse engineered the Wave Link plugin for Elgato's StreamDeck, I was able to create an SDK for communicating with Wave Link's RPC.
 
-<video src="assets/average.mp4" width="600" height="auto" controls></video>
+https://github.com/DarrellVS/node-wave-link-sdk/assets/34742171/27875525-f725-452f-ba09-78513d0b3a0e
 
 ## Installation
 
