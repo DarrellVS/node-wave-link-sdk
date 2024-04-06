@@ -95,11 +95,11 @@ export class WaveLinkOutputController extends BaseController<WaveLinkOutputChann
   }
 
   public get localVolume(): number {
-    return this.localVolume;
+    return this.#localVolume;
   }
 
   public get streamVolume(): number {
-    return this.streamVolume;
+    return this.#streamVolume;
   }
 
   public get localMute() {
