@@ -56,6 +56,6 @@ More extensive examples available [here!](https://github.com/DarrellVS/node-wave
 #### I will not be actively updating this library
 
 As long as Elgato doesn't break anything.\
-Minor issues may be patched, major issues may or may not 👀
+Minor issues may be patched, major feature requests may or may not be implemented 👀
 
 Feel free to open a PR adding your own contributions 🚀
