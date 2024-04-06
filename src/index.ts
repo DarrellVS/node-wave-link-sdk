@@ -82,3 +82,5 @@ export class WaveLinkController extends BaseController<null> {
     );
   }
 }
+
+export { WaveLinkInputController, WaveLinkOutputController };
