@@ -7,7 +7,7 @@ import {
   WaveLinkInputChannelEvents,
 } from '../Types/WaveLink';
 import { BaseController } from './BaseController';
-import { waveLinkFilterEvents, waveLinkInputEvents } from '../Utils/constants';
+import { waveLinkFilterEvents } from '../Utils/constants';
 
 export class WaveLinkInputController extends BaseController<WaveLinkInputChannelEvents> {
   #rpc: simple_jsonrpc;
@@ -158,15 +158,15 @@ export class WaveLinkInputController extends BaseController<WaveLinkInputChannel
     );
 
     this.#waveLinkEmitter.on('websocketClose', () => {
-      for (const eventName of waveLinkInputEvents) {
-        this.removeAllListeners(eventName);
-      }
-
-      for (const filter of this.#FILTERS) {
+      this.#FILTERS.forEach((filter) => {
         for (const filterEvent of waveLinkFilterEvents) {
           filter.removeAllListeners(filterEvent);
         }
-      }
+
+        filter = null;
+      });
+
+      this.#FILTERS = [];
     });
   }
 

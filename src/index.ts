@@ -8,6 +8,7 @@ import {
   GetOutputConfigResponse,
   GetOutputsResponse,
 } from './Types/WaveLink';
+import { waveLinkInternalEvents } from './Utils/constants';
 
 export class WaveLinkController extends BaseController<null> {
   private waveLinkController: BaseWaveLinkController | null = null;
@@ -29,8 +30,14 @@ export class WaveLinkController extends BaseController<null> {
     );
 
     this.waveLinkController.on('websocketClose', () => {
-      this.INPUTS = [];
-      this.OUTPUT = null;
+      setTimeout(() => {
+        waveLinkInternalEvents.forEach((eventName) => {
+          this.waveLinkController.removeAllListeners(eventName);
+        });
+
+        this.INPUTS = [];
+        this.OUTPUT = null;
+      }, 100);
     });
   }
 

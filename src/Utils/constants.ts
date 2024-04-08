@@ -1,4 +1,5 @@
 import {
+  WaveLinkEvents,
   WaveLinkFilterEvents,
   WaveLinkInputChannelEvents,
   WaveLinkOutputChannelEvents,
@@ -73,6 +74,23 @@ export const getWaveLinkEventData = (
   }
   return null;
 };
+
+export const waveLinkInternalEvents: Array<keyof WaveLinkEvents> = [
+  'websocketOpen',
+  'websocketClose',
+  'initialiseChannels',
+  'outputMuteChanged',
+  'outputVolumeChanged',
+  'selectedOutputChanged',
+  'inputNameChanged',
+  'inputMuteChanged',
+  'inputVolumeChanged',
+  'filterBypassStateChanged',
+  'filterAdded',
+  'filterRemoved',
+  'filterChanged',
+  'inputsChanged',
+];
 
 export const waveLinkInputEvents: Array<keyof WaveLinkInputChannelEvents> = [
   'localVolumeChanged',

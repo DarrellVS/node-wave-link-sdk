@@ -1,6 +1,6 @@
 {
   "name": "@darrellvs/node-wave-link-sdk",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "An unofficial SDK for Elgato's Wave Link",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
