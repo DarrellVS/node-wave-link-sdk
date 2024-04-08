@@ -85,6 +85,7 @@ export class BaseWaveLinkController extends BaseController<WaveLinkEvents> {
 
     this.websocket.onclose = () => {
       this.isConnecting = false;
+      this.emit('websocketClose');
 
       setTimeout(async () => {
         try {

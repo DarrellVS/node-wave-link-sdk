@@ -1,3 +1,9 @@
+import {
+  WaveLinkFilterEvents,
+  WaveLinkInputChannelEvents,
+  WaveLinkOutputChannelEvents,
+} from '../Types/WaveLink';
+
 const mixerIDSelectedOutputAndValueTransformer = ({
   mixerID,
   value,
@@ -67,3 +73,31 @@ export const getWaveLinkEventData = (
   }
   return null;
 };
+
+export const waveLinkInputEvents: Array<keyof WaveLinkInputChannelEvents> = [
+  'localVolumeChanged',
+  'streamVolumeChanged',
+  'volumeChanged',
+  'localMuteChanged',
+  'streamMuteChanged',
+  'muteChanged',
+  'streamFiltersMuteChanged',
+  'localFiltersMuteChanged',
+  'nameChanged',
+];
+
+export const waveLinkOutputEvents: Array<keyof WaveLinkOutputChannelEvents> = [
+  'localVolumeChanged',
+  'streamVolumeChanged',
+  'volumeChanged',
+  'localMuteChanged',
+  'streamMuteChanged',
+  'muteChanged',
+  'selectedOutputChanged',
+];
+
+export const waveLinkFilterEvents: Array<keyof WaveLinkFilterEvents> = [
+  'muteChanged',
+  'mute',
+  'unmute',
+];

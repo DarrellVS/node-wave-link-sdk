@@ -1,4 +1,4 @@
-import { WaveLinkController } from '@darrellvs/node-wave-link-sdk';
+import { WaveLinkController } from '../src';
 
 // This example shows a more advanced example of processing the volume and mute state of multiple inputs to another input
 

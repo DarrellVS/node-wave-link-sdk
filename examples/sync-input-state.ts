@@ -1,4 +1,4 @@
-import { WaveLinkController } from '@darrellvs/node-wave-link-sdk';
+import { WaveLinkController } from '../src';
 
 // This example demonstrates how to sync the volume and mute state of one input to another input
 

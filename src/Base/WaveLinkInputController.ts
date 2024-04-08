@@ -1,8 +1,13 @@
 import simple_jsonrpc from 'simple-jsonrpc-js';
 import { WaveLinkFilterController } from './WaveLinkFilterController';
 import { BaseWaveLinkController } from './BaseWaveLinkController';
-import { GetInputConfig, WaveLinkInputChannelEvents } from '../Types/WaveLink';
+import {
+  GetInputConfig,
+  GetInputConfigsResponse,
+  WaveLinkInputChannelEvents,
+} from '../Types/WaveLink';
 import { BaseController } from './BaseController';
+import { waveLinkFilterEvents, waveLinkInputEvents } from '../Utils/constants';
 
 export class WaveLinkInputController extends BaseController<WaveLinkInputChannelEvents> {
   #rpc: simple_jsonrpc;
@@ -122,6 +127,47 @@ export class WaveLinkInputController extends BaseController<WaveLinkInputChannel
         }
       }
     );
+
+    this.#waveLinkEmitter.on(
+      'inputsChanged',
+      (inputs: GetInputConfigsResponse) => {
+        const newInput = inputs.find(
+          (input) => input.identifier === this.#identifier
+        );
+
+        if (!newInput) {
+          return;
+        }
+
+        this.#name = newInput.name;
+        this.#bgColor = newInput.bgColor;
+        this.#iconData = newInput.iconData;
+        this.#inputType = newInput.inputType;
+        this.#isAvailable = newInput.isAvailable;
+      }
+    );
+
+    this.#waveLinkEmitter.on(
+      'inputNameChanged',
+      ({ identifier, value }: { identifier: string; value: string }) => {
+        if (identifier === this.#identifier) {
+          this.#name = value;
+          this.emit('nameChanged', value);
+        }
+      }
+    );
+
+    this.#waveLinkEmitter.on('websocketClose', () => {
+      for (const eventName of waveLinkInputEvents) {
+        this.removeAllListeners(eventName);
+      }
+
+      for (const filter of this.#FILTERS) {
+        for (const filterEvent of waveLinkFilterEvents) {
+          filter.removeAllListeners(filterEvent);
+        }
+      }
+    });
   }
 
   public getFilter({ name, filterID }: { name?: string; filterID?: string }) {

@@ -1,4 +1,4 @@
-import { WaveLinkController } from '@darrellvs/node-wave-link-sdk';
+import { WaveLinkController } from '../src';
 
 (async () => {
   // Create a new WaveLinkController instance and connect to the Wave Link server

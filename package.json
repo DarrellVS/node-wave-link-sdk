@@ -9,9 +9,14 @@
     "dist"
   ],
   "scripts": {
+    "dev": "nodemon src/index.ts",
     "build": "tsup",
     "test": "jest",
-    "pub": "npm version patch --force && npm publish"
+    "pub": "npm version patch --force && npm publish",
+    "example:ov": "nodemon examples/output-volume.ts --trace-warnings",
+    "example:siv": "nodemon examples/smart-input-volume.ts --trace-warnings",
+    "example:sie": "nodemon examples/sync-input-effects.ts --trace-warnings",
+    "example:sis": "nodemon examples/sync-input-state.ts --trace-warnings"
   },
   "repository": {
     "type": "git",

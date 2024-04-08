@@ -1,13 +1,9 @@
 import { BaseController } from './BaseController';
 import simple_jsonrpc from 'simple-jsonrpc-js';
 import { BaseWaveLinkController } from './BaseWaveLinkController';
-import { GetInputConfigFilter } from '../Types/WaveLink';
+import { GetInputConfigFilter, WaveLinkFilterEvents } from '../Types/WaveLink';
 
-export class WaveLinkFilterController extends BaseController<{
-  muteChanged: (muted: boolean) => void;
-  mute: () => void;
-  unmute: () => void;
-}> {
+export class WaveLinkFilterController extends BaseController<WaveLinkFilterEvents> {
   #id: string = '';
   #name: string = '';
   #muted: boolean = true;

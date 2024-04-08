@@ -1,4 +1,4 @@
-import { WaveLinkController } from '@darrellvs/node-wave-link-sdk';
+import { WaveLinkController } from '../src';
 
 // This example demonstrates how to listen for changes in the local volume of the output mixer
 

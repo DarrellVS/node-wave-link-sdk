@@ -41,6 +41,7 @@ export type GetInputConfigsResponse = GetInputConfig[];
 
 export type WaveLinkEvents = {
   websocketOpen: () => void;
+  websocketClose: () => void;
   initialiseChannels: (dto: {
     inputs: GetInputConfigsResponse;
     outputs: GetOutputConfigResponse;
@@ -85,20 +86,30 @@ export type VolumeAndMuteChangedEvent = {
   streamMute: boolean;
 };
 
-export type WaveLinkChannelEvents = {
+export type WaveLinkOutputChannelEvents = {
   localVolumeChanged: (volume: number) => void;
   streamVolumeChanged: (volume: number) => void;
   volumeChanged: (dto: VolumeAndMuteChangedEvent) => void;
   localMuteChanged: (isMuted: boolean) => void;
   streamMuteChanged: (isMuted: boolean) => void;
   muteChanged: (dto: VolumeAndMuteChangedEvent) => void;
-};
-
-export type WaveLinkOutputChannelEvents = WaveLinkChannelEvents & {
   selectedOutputChanged: (identifier: string) => void;
 };
 
-export type WaveLinkInputChannelEvents = WaveLinkChannelEvents & {
+export type WaveLinkInputChannelEvents = {
+  localVolumeChanged: (volume: number) => void;
+  streamVolumeChanged: (volume: number) => void;
+  volumeChanged: (dto: VolumeAndMuteChangedEvent) => void;
+  localMuteChanged: (isMuted: boolean) => void;
+  streamMuteChanged: (isMuted: boolean) => void;
+  muteChanged: (dto: VolumeAndMuteChangedEvent) => void;
   streamFiltersMuteChanged: (isMuted: boolean) => void;
   localFiltersMuteChanged: (isMuted: boolean) => void;
+  nameChanged: (name: string) => void;
+};
+
+export type WaveLinkFilterEvents = {
+  muteChanged: (muted: boolean) => void;
+  mute: () => void;
+  unmute: () => void;
 };

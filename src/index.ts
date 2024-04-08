@@ -18,6 +18,7 @@ export class WaveLinkController extends BaseController<null> {
   constructor(host: string = '127.0.0.1') {
     super();
     this.waveLinkController = new BaseWaveLinkController(this.rpc, host);
+    this.waveLinkController.setMaxListeners(16);
 
     this.waveLinkController.on(
       'initialiseChannels',
@@ -27,13 +28,13 @@ export class WaveLinkController extends BaseController<null> {
       }
     );
 
-    this.waveLinkController.on('inputsChanged', (inputs) => {
-      this.initialiseInputs(inputs);
+    this.waveLinkController.on('websocketClose', () => {
+      this.INPUTS = [];
+      this.OUTPUT = null;
     });
   }
 
   private initialiseInputs(inputs: GetInputConfigsResponse) {
-    this.INPUTS = [];
     inputs.forEach((input) => {
       this.INPUTS.push(
         new WaveLinkInputController(

@@ -2,6 +2,7 @@ import { BaseController } from './BaseController';
 import { WaveLinkOutputChannelEvents } from '../Types/WaveLink';
 import { BaseWaveLinkController } from './BaseWaveLinkController';
 import simple_jsonrpc from 'simple-jsonrpc-js';
+import { waveLinkOutputEvents } from '../Utils/constants';
 
 export class WaveLinkOutputController extends BaseController<WaveLinkOutputChannelEvents> {
   #rpc: simple_jsonrpc;
@@ -87,6 +88,12 @@ export class WaveLinkOutputController extends BaseController<WaveLinkOutputChann
     this.#waveLinkEmitter.on('selectedOutputChanged', (selectedOutput) => {
       this.#identifier = selectedOutput;
       this.emit('selectedOutputChanged', selectedOutput);
+    });
+
+    waveLinkEmitter.on('websocketClose', () => {
+      for (const eventName of waveLinkOutputEvents) {
+        this.removeAllListeners(eventName);
+      }
     });
   }
 
