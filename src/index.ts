@@ -8,9 +8,13 @@ import {
   GetOutputConfigResponse,
   GetOutputsResponse,
 } from './Types/WaveLink';
-import { waveLinkInternalEvents } from './Utils/constants';
+import { waveLinkInternalEventsToBeRemoved } from './Utils/constants';
 
-export class WaveLinkController extends BaseController<null> {
+export class WaveLinkController extends BaseController<{
+  websocketOpen: () => void;
+  websocketClose: () => void;
+  ready: () => void;
+}> {
   private waveLinkController: BaseWaveLinkController | null = null;
   private INPUTS: WaveLinkInputController[] = [];
   private OUTPUT: WaveLinkOutputController;
@@ -26,18 +30,14 @@ export class WaveLinkController extends BaseController<null> {
       ({ inputs, outputs, selectedOutput }) => {
         this.initialiseInputs(inputs);
         this.initialiseOutputs(outputs, selectedOutput);
+
+        this.emit('ready');
       }
     );
 
-    this.waveLinkController.on('websocketClose', () => {
-      setTimeout(() => {
-        waveLinkInternalEvents.forEach((eventName) => {
-          this.waveLinkController.removeAllListeners(eventName);
-        });
-
-        this.INPUTS = [];
-        this.OUTPUT = null;
-      }, 100);
+    this.waveLinkController.on('websocketOpen', () => {
+      this.attachCloseListener();
+      this.emit('websocketOpen');
     });
   }
 
@@ -64,6 +64,21 @@ export class WaveLinkController extends BaseController<null> {
       [...outputs.localMixer, false],
       [...outputs.streamMixer, false]
     );
+  }
+
+  private attachCloseListener() {
+    this.waveLinkController.on('websocketClose', () => {
+      setTimeout(() => {
+        waveLinkInternalEventsToBeRemoved.forEach((eventName) => {
+          this.waveLinkController.removeAllListeners(eventName);
+        });
+
+        this.INPUTS = [];
+        this.OUTPUT = null;
+
+        this.emit('websocketClose');
+      }, 100);
+    });
   }
 
   async connect() {

@@ -75,6 +75,21 @@ export const getWaveLinkEventData = (
   return null;
 };
 
+export const waveLinkInternalEventsToBeRemoved: Array<keyof WaveLinkEvents> = [
+  'websocketClose',
+  'outputMuteChanged',
+  'outputVolumeChanged',
+  'selectedOutputChanged',
+  'inputNameChanged',
+  'inputMuteChanged',
+  'inputVolumeChanged',
+  'filterBypassStateChanged',
+  'filterAdded',
+  'filterRemoved',
+  'filterChanged',
+  'inputsChanged',
+];
+
 export const waveLinkInternalEvents: Array<keyof WaveLinkEvents> = [
   'websocketOpen',
   'websocketClose',
