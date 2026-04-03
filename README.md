@@ -2,10 +2,6 @@
 
 An unofficial SDK for Elgato's Wave Link
 
-> ⚠️ **Wave Link 3.0 not yet supported**  
-> This SDK currently does **not** support the new Wave Link 3.0 application.  
-> You can track upgrade progress in this issue: https://github.com/DarrellVS/node-wave-link-sdk/issues/1
-
 ## Introduction
 
 This package provides you with utilities to manipulate and read the Wave Link application from your own code base.\
