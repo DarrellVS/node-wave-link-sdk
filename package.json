@@ -1,7 +1,7 @@
 {
   "name": "@darrellvs/node-wave-link-sdk",
-  "version": "1.0.14",
-  "description": "An unofficial SDK for Elgato's Wave Link",
+  "version": "2.0.0",
+  "description": "An unofficial SDK for Elgato's Wave Link (supports Wave Link 3.x)",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -13,10 +13,10 @@
     "build": "tsup",
     "test": "jest",
     "pub": "npm version patch --force && npm publish",
-    "example:ov": "nodemon examples/output-volume.ts --trace-warnings",
-    "example:siv": "nodemon examples/smart-input-volume.ts --trace-warnings",
-    "example:sie": "nodemon examples/sync-input-effects.ts --trace-warnings",
-    "example:sis": "nodemon examples/sync-input-state.ts --trace-warnings"
+    "example:channels": "nodemon examples/channel-volume.ts --trace-warnings",
+    "example:meters": "nodemon examples/level-meters.ts --trace-warnings",
+    "example:focused": "nodemon examples/focused-app.ts --trace-warnings",
+    "example:gain": "nodemon examples/wave-gain.ts --trace-warnings"
   },
   "repository": {
     "type": "git",
@@ -35,8 +35,6 @@
   },
   "homepage": "https://github.com/DarrellVS/node-wave-link-sdk#readme",
   "dependencies": {
-    "events": "^3.3.0",
-    "simple-jsonrpc-js": "^1.2.0",
     "ws": "^8.13.0"
   },
   "devDependencies": {
