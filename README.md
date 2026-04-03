@@ -49,7 +49,7 @@ output.on('localVolumeChanged', (volume) => {
 });
 ```
 
-More extensive examples available [here!](https://github.com/DarrellVS/node-wave-link-sdk/tree/main/examples)
+More extensive examples available [here!](https://github.com/DarrellVS/node-wave-link-sdk/tree/v2/examples)
 
 ## Notes
 
