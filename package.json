@@ -16,7 +16,11 @@
     "example:channels": "nodemon examples/channel-volume.ts --trace-warnings",
     "example:meters": "nodemon examples/level-meters.ts --trace-warnings",
     "example:focused": "nodemon examples/focused-app.ts --trace-warnings",
-    "example:gain": "nodemon examples/wave-gain.ts --trace-warnings"
+    "example:gain": "nodemon examples/wave-gain.ts --trace-warnings",
+    "example:duck": "nodemon examples/duck-music.ts --trace-warnings",
+    "example:sync-mutes": "nodemon examples/sync-channel-mutes.ts --trace-warnings",
+    "example:output": "nodemon examples/output-selector.ts --trace-warnings",
+    "example:effects": "nodemon examples/toggle-effects.ts --trace-warnings"
   },
   "repository": {
     "type": "git",
