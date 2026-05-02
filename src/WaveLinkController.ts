@@ -365,9 +365,18 @@ function deepMergeDevice(target: any, patch: any) {
 
 function deepMergeChannel(target: Channel, patch: any) {
   if (patch.mixes) {
+    // Wave Link sends the full mixes array on every channelChanged notification,
+    // so we can treat it as authoritative: remove, update, or add as needed.
+    target.mixes = target.mixes.filter((m) =>
+      patch.mixes.some((pm: any) => pm.id === m.id)
+    );
     for (const mixPatch of patch.mixes) {
       const existing = target.mixes.find((m) => m.id === mixPatch.id);
-      if (existing) Object.assign(existing, mixPatch);
+      if (existing) {
+        Object.assign(existing, mixPatch);
+      } else {
+        target.mixes.push({ ...mixPatch });
+      }
     }
   }
   if (patch.effects) {
